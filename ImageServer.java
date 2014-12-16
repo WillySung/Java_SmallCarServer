@@ -61,6 +61,7 @@ class ControlFrame extends JFrame{
     public JButton jb_down;
     public JButton jb_left;
     public JButton jb_right;
+    public static int clicked_bt = 0;
 
     //theses are the buttons for message
     public JButton jb_1;
@@ -73,7 +74,6 @@ class ControlFrame extends JFrame{
     public JLabel label2 = new JLabel();
     public static int send_flag = 0;
     public static String send_message = "";
-    public static int back_to_center = 0;
     public int bg_x = 153;
     int str_count = 0;
     int shift = -200;
@@ -86,37 +86,33 @@ class ControlFrame extends JFrame{
 
     public ControlFrame(){
         /*---------------- For image transmition related code -------------------*/
-        
-        // get screen dimensions       
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
-        int screenHeight = screenSize.height;
-        int screenWidth = screenSize.width;
 
         // center frame in screen
         setTitle("Control Window");
         setLocation(0, 0);
         setSize(screenWidth, screenHeight);
-        this.getContentPane().setBackground( Color.GRAY );
+        this.getContentPane().setBackground( Color.WHITE );
+        this.getContentPane().setLayout(null);
 
         // add image panel to frame
-        this.getContentPane().setLayout(null);
         i_panel = new ImagePanel();
 
         //set the size of image
         i_panel.setSize(screenWidth/2,screenHeight); //640 480
         i_panel.setLocation(0, 0);
+        i_panel.setBackground( Color.WHITE );
         add(i_panel);
 
         /*------------------- For chat related code -----------------------*/
         
         // add chat panel to frame
-        this.getContentPane().setLayout(null);
         c_panel = new Panel();
 
         //set the size of image
         c_panel.setSize(screenWidth/2,screenHeight); //640 480
         c_panel.setLocation(screenWidth/2, 0);
+        c_panel.setLayout(null);
+        c_panel.setBackground( Color.WHITE );
 
         String ip = null;
         String address = null; 
@@ -132,8 +128,9 @@ class ControlFrame extends JFrame{
         //This button guide the user to input the correct ip of computer to the cell phone.
         jb_1 = new JButton(ip);
         //positon x, position y, size width, size height
-        jb_1.setBounds(30, 0, screenWidth - 60, screenHeight/scale);
-        jb_1.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+        jb_1.setBounds(30, 5, screenWidth/2 - 30, (screenHeight/scale)*1 );
+        jb_1.setFont(new Font("SansSerif",Font.ITALIC ,28) );
+        jb_1.setBackground( Color.WHITE );
 
         jb_1.addMouseListener(new MouseAdapter()
         {
@@ -142,7 +139,7 @@ class ControlFrame extends JFrame{
             }
         });
         c_panel.add(jb_1);
-
+        
         // Create an image to load image to set button icon
         Image img;
 
@@ -153,7 +150,7 @@ class ControlFrame extends JFrame{
             } catch (IOException ex) {
         }
         //positon x, position y, size width, size height
-        jb_up.setBounds(30,(screenHeight/scale)*3, screenWidth/2 - 60,(screenHeight/scale)*2);
+        jb_up.setBounds(30,(screenHeight/scale)*4, screenWidth/2 - 30,(screenHeight/scale)*2);
         jb_up.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
 
         jb_up.addMouseListener(new MouseAdapter()
@@ -161,9 +158,8 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
             	System.out.println(" clicked ");
                 send_message = "1";
+                clicked_bt = 1;
                 send_flag = 1;
-                //label2.setBounds(153, 318+shift, 50, 50);
-                back_to_center = 1;
             }
         });
         c_panel.add(jb_up);
@@ -175,20 +171,62 @@ class ControlFrame extends JFrame{
             } catch (IOException ex) {
         }
         //positon x, position y, size width, size height
-        jb_down.setBounds(30,(screenHeight/scale)*6, screenWidth/2 - 60,(screenHeight/scale)*2);
+        jb_down.setBounds(30,(screenHeight/scale)*8, screenWidth/2 - 30,(screenHeight/scale)*2);
         jb_down.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
 
         jb_down.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
-                send_message = "1";
+                send_message = "2";
+                clicked_bt = 2;
                 send_flag = 1;
-                //label2.setBounds(153, 318+shift, 50, 50);
-                back_to_center = 1;
             }
         });
         c_panel.add(jb_down);
+
+        jb_left = new JButton();
+        try {
+            img = ImageIO.read(getClass().getResource("image/left.png"));
+            jb_left.setIcon(new ImageIcon(img));
+            } catch (IOException ex) {
+        }
+        //positon x, position y, size width, size height
+        jb_left.setBounds(30,(screenHeight/scale)*6, (screenWidth/2)/2 - 10,(screenHeight/scale)*2);
+        jb_left.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+
+        jb_left.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "3";
+                clicked_bt = 3;
+                send_flag = 1;
+            }
+        });
+        c_panel.add(jb_left);
+
+        jb_right = new JButton();
+        try {
+            img = ImageIO.read(getClass().getResource("image/right.png"));
+            jb_right.setIcon(new ImageIcon(img));
+            } catch (IOException ex) {
+        }
+        //positon x, position y, size width, size height
+        jb_right.setBounds((screenWidth/2)/2+30,(screenHeight/scale)*6, (screenWidth/2)/2 -30,(screenHeight/scale)*2);
+        jb_right.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+
+        jb_right.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "4";
+                clicked_bt = 4;
+                send_flag = 1;
+            }
+        });
+        c_panel.add(jb_right);
+
         add(c_panel);
     }
 

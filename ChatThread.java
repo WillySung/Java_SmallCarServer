@@ -31,33 +31,60 @@ class ChatThread extends Thread{
 
     //public Socket con = null;
     public int command_counter = 0;
+    public int duration = 1000;  // moving for 1 sec per command
 
     public void run(){
 
     try{
         OutputStream out = ImageServer.con.getOutputStream();
-
+        Image img;
         while(true){
+            try{
+                Thread.sleep(10);
+            } catch(InterruptedException ex){}
+
             if (ImageServer.frame.send_flag == 1) {
                 out.write(ImageServer.frame.send_message.getBytes());
                 out.flush();
                 command_counter ++;
                 System.out.println("sending" + command_counter);
                 ImageServer.frame.send_flag = 0;
-            }
-            if (ImageServer.frame.back_to_center == 1) {
+                
+                if (ImageServer.frame.clicked_bt == 1) {
+                    img = ImageIO.read(getClass().getResource("image/up_clicked.png"));
+                    ImageServer.frame.jb_up.setIcon(new ImageIcon(img));
+                }
+                else if (ImageServer.frame.clicked_bt == 2) {
+                    img = ImageIO.read(getClass().getResource("image/down_clicked.png"));
+                    ImageServer.frame.jb_down.setIcon(new ImageIcon(img));
+                }
+                else if (ImageServer.frame.clicked_bt == 3) {
+                    img = ImageIO.read(getClass().getResource("image/left_clicked.png"));
+                    ImageServer.frame.jb_left.setIcon(new ImageIcon(img));
+                }
+                else if (ImageServer.frame.clicked_bt == 4) {
+                    img = ImageIO.read(getClass().getResource("image/right_clicked.png"));
+                    ImageServer.frame.jb_right.setIcon(new ImageIcon(img));
+                }
+                else{
+
+                }
+
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1000);img = ImageIO.read(getClass().getResource("image/up.png"));
+                    ImageServer.frame.jb_up.setIcon(new ImageIcon(img));
+                    img = ImageIO.read(getClass().getResource("image/down.png"));
+                    ImageServer.frame.jb_down.setIcon(new ImageIcon(img));
+                    img = ImageIO.read(getClass().getResource("image/left.png"));
+                    ImageServer.frame.jb_left.setIcon(new ImageIcon(img));
+                    img = ImageIO.read(getClass().getResource("image/right.png"));
+                    ImageServer.frame.jb_right.setIcon(new ImageIcon(img));
+                    
+                    ImageServer.frame.clicked_bt = 0;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                ImageServer.frame.back_to_center = 0;
             }
-            try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
         }
     }catch(IOException e){
         System.out.println("chat connect err");
