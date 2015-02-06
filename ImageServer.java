@@ -258,6 +258,7 @@ class ImagePanel extends JPanel {
         this.input_stream = s.getInputStream();
         this.image = ImageIO.read(input_stream);
         this.input_stream.close();
+
         ImageCount++;
     }
    
@@ -266,7 +267,10 @@ class ImagePanel extends JPanel {
         if (image == null) return;
         
         Graphics2D g2 = (Graphics2D) g;
-        g2.rotate(Math.toRadians(270),300,100);
-        g2.drawImage(image, 0, 0, null);
+        //g2.rotate(270);
+        g2.rotate(Math.toRadians(270),640,480);
+        g2.drawImage( image,640 - (ImageServer.frame.screenHeight)/4 /*UP*/, 0/*RIGHT*/, null);
+        System.out.println(ImageServer.frame.screenHeight + "  " + ImageServer.frame.screenWidth);
+        //g2.drawImage(image, ImageServer.frame.screenHeight-640, ImageServer.frame.screenWidth/2-480, null);
     }
 }
