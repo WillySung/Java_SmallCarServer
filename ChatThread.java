@@ -51,34 +51,44 @@ class ChatThread extends Thread{
                 ImageServer.frame.send_flag = 0;
                 
                 if (ImageServer.frame.clicked_bt == 1) {
-                    img = ImageIO.read(getClass().getResource("image/up_clicked.png"));
-                    ImageServer.frame.jb_up.setIcon(new ImageIcon(img));
+                    //img = ImageIO.read(getClass().getResource("image/up_clicked.png"));
+                    ImageServer.frame.jb_up.setIcon(new ImageIcon((new ImageIcon(
+                        "image/up_clicked.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth2, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                 }
                 else if (ImageServer.frame.clicked_bt == 2) {
-                    img = ImageIO.read(getClass().getResource("image/down_clicked.png"));
-                    ImageServer.frame.jb_down.setIcon(new ImageIcon(img));
+                    ImageServer.frame.jb_down.setIcon(new ImageIcon((new ImageIcon(
+                        "image/down_clicked.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth2, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                 }
                 else if (ImageServer.frame.clicked_bt == 3) {
-                    img = ImageIO.read(getClass().getResource("image/left_clicked.png"));
-                    ImageServer.frame.jb_left.setIcon(new ImageIcon(img));
+                    ImageServer.frame.jb_left.setIcon(new ImageIcon((new ImageIcon(
+                        "image/left_clicked.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                 }
                 else if (ImageServer.frame.clicked_bt == 4) {
-                    img = ImageIO.read(getClass().getResource("image/right_clicked.png"));
-                    ImageServer.frame.jb_right.setIcon(new ImageIcon(img));
+                    ImageServer.frame.jb_right.setIcon(new ImageIcon((new ImageIcon(
+                        "image/right_clicked.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                 }
                 else{
 
                 }
 
                 try {
-                    Thread.sleep(1000);img = ImageIO.read(getClass().getResource("image/up.png"));
-                    ImageServer.frame.jb_up.setIcon(new ImageIcon(img));
-                    img = ImageIO.read(getClass().getResource("image/down.png"));
-                    ImageServer.frame.jb_down.setIcon(new ImageIcon(img));
-                    img = ImageIO.read(getClass().getResource("image/left.png"));
-                    ImageServer.frame.jb_left.setIcon(new ImageIcon(img));
-                    img = ImageIO.read(getClass().getResource("image/right.png"));
-                    ImageServer.frame.jb_right.setIcon(new ImageIcon(img));
+                    Thread.sleep(1000);
+                    ImageServer.frame.jb_up.setIcon(new ImageIcon((new ImageIcon(
+                        "image/up.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth2, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
+                    ImageServer.frame.jb_down.setIcon(new ImageIcon((new ImageIcon(
+                        "image/down.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth2, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
+                    ImageServer.frame.jb_left.setIcon(new ImageIcon((new ImageIcon(
+                        "image/left.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
+                    ImageServer.frame.jb_right.setIcon(new ImageIcon((new ImageIcon(
+                        "image/right.png").getImage()
+                        .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                     
                     ImageServer.frame.clicked_bt = 0;
                 } catch (InterruptedException e) {

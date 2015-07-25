@@ -1,13 +1,31 @@
+import java.lang.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.awt.event.*;
-import java.lang.*;
 
 import javax.imageio.*;
 import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.event.*;
 import java.net.*;
+import java.net.Socket;
+import java.net.ServerSocket;
+import java.net.InetSocketAddress;
+import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
+
+import java.io.*;
+import java.util.*;
+import java.net.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Dimension;
 
 
 public class ImageServer {
@@ -63,26 +81,38 @@ class ControlFrame extends JFrame{
     public JButton jb_right;
     public static int clicked_bt = 0;
 
-    //theses are the buttons for message
+    // these button are used to change the icon of the android
+    public JButton icon_1, icon_2, icon_3, icon_4, icon_5, icon_6, icon_7;
+
+    //these are the buttons for message
     public JButton jb_1;
 
     //this is the textfield
     public JTextField input_field;
     public JTextField output_field;
 
-    //for ceter
+    //for center
     public JLabel label2 = new JLabel();
     public static int send_flag = 0;
+    public static int back_to_center = 0;
     public static String send_message = "";
     public int bg_x = 153;
     int str_count = 0;
     int shift = -200;
-    int scale = 11;
+    int scale = 17;
 
     // set the perference of the frame
     Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public int screenHeight = screenSize.height;
     public int screenWidth = screenSize.width;
+    
+    public int imageWidth = screenWidth/2;
+    public int imageHeight = screenHeight*2/3;
+    public int image_position = screenHeight/2 - imageHeight/2;
+
+    public int buttonHeight = (screenHeight/scale)*2-10;
+    public int buttonWidth1 = (screenWidth/2)/4 -5;
+    public int buttonWidth2 = (screenWidth/2)/2 -5;
 
     public ControlFrame(){
         /*---------------- For image transmition related code -------------------*/
@@ -131,6 +161,8 @@ class ControlFrame extends JFrame{
         jb_1.setBounds(30, 5, screenWidth/2 - 30, (screenHeight/scale)*1 );
         jb_1.setFont(new Font("SansSerif",Font.ITALIC ,28) );
         jb_1.setBackground( Color.WHITE );
+        // set all the button not to be focused, thus, we can catch the keyboard event
+        jb_1.setFocusable(false);
 
         jb_1.addMouseListener(new MouseAdapter()
         {
@@ -143,15 +175,69 @@ class ControlFrame extends JFrame{
         // Create an image to load image to set button icon
         Image img;
 
-        jb_up = new JButton();
-        try {
-            img = ImageIO.read(getClass().getResource("image/up.png"));
-            jb_up.setIcon(new ImageIcon(img));
-            } catch (IOException ex) {
-        }
+        // Add a JText to receive the input command
+        final JTextField cmd_input = new JTextField("", 50);
+        String old_string = "";
+
+        addKeyListener(new KeyListener() {
+            
+            public void keyPressed(KeyEvent e) {
+                char input = e.getKeyChar();
+                System.out.println( " received : " + input);
+
+                switch(input){
+                    // right
+                    case 'e':
+                        System.out.println(" right ");
+                        send_message = "4";
+                        clicked_bt = 4;
+                        send_flag = 1;
+                        break;
+                    // left
+                    case 't':
+                        System.out.println(" left ");
+                        send_message = "3";
+                        clicked_bt = 3;
+                        send_flag = 1;
+                        break;
+                    // up
+                    case 'i':
+                        System.out.println(" up ");
+                        send_message = "1";
+                        clicked_bt = 1;
+                        send_flag = 1;
+                        break;
+                    // down
+                    case 'm':
+                        System.out.println(" down ");
+                        send_message = "2";
+                        clicked_bt = 2;
+                        send_flag = 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            public void keyReleased(KeyEvent e) { 
+                //System.out.println("release"); 
+            }
+
+            public void keyTyped(KeyEvent e) { 
+                //System.out.println("keytyped"); 
+            }
+        });
+        
+        jb_up = new JButton("* *");
+        jb_up.setIcon(new ImageIcon((new ImageIcon(
+            "image/up.png").getImage()
+            .getScaledInstance(buttonWidth2, buttonHeight, java.awt.Image.SCALE_SMOOTH))));
+
         //positon x, position y, size width, size height
-        jb_up.setBounds(30,(screenHeight/scale)*4, screenWidth/2 - 30,(screenHeight/scale)*2);
-        jb_up.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+        jb_up.setBounds(30,(screenHeight/scale)*10, screenWidth/2 - 30,(screenHeight/scale)*2);
+        jb_up.setFont(new Font("SansSerif",Font.ITALIC ,48) );
+        // set the button not to be focused, thus, we can catch the keyboard event
+        jb_up.setFocusable(false);
 
         jb_up.addMouseListener(new MouseAdapter()
         {
@@ -164,15 +250,15 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(jb_up);
 
-        jb_down = new JButton();
-        try {
-            img = ImageIO.read(getClass().getResource("image/down.png"));
-            jb_down.setIcon(new ImageIcon(img));
-            } catch (IOException ex) {
-        }
+        jb_down = new JButton("_ _");
+        jb_down.setIcon(new ImageIcon((new ImageIcon(
+            "image/down.png").getImage()
+            .getScaledInstance(buttonWidth2, buttonHeight, java.awt.Image.SCALE_SMOOTH))));
+        
         //positon x, position y, size width, size height
-        jb_down.setBounds(30,(screenHeight/scale)*8, screenWidth/2 - 30,(screenHeight/scale)*2);
-        jb_down.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+        jb_down.setBounds(30,(screenHeight/scale)*14, screenWidth/2 - 30,(screenHeight/scale)*2);
+        jb_down.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ; 
+        jb_down.setFocusable(false);
 
         jb_down.addMouseListener(new MouseAdapter()
         {
@@ -185,15 +271,14 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(jb_down);
 
-        jb_left = new JButton();
-        try {
-            img = ImageIO.read(getClass().getResource("image/left.png"));
-            jb_left.setIcon(new ImageIcon(img));
-            } catch (IOException ex) {
-        }
+        jb_left = new JButton("_");
+        jb_left.setIcon(new ImageIcon((new ImageIcon(
+            "image/left.png").getImage()
+            .getScaledInstance(buttonWidth1, buttonHeight, java.awt.Image.SCALE_SMOOTH))));
         //positon x, position y, size width, size height
-        jb_left.setBounds(30,(screenHeight/scale)*6, (screenWidth/2)/2 - 10,(screenHeight/scale)*2);
-        jb_left.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+        jb_left.setBounds(30,(screenHeight/scale)*12, (screenWidth/2)/2 - 15,(screenHeight/scale)*2);
+        jb_left.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ; 
+        jb_left.setFocusable(false);
 
         jb_left.addMouseListener(new MouseAdapter()
         {
@@ -206,15 +291,14 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(jb_left);
 
-        jb_right = new JButton();
-        try {
-            img = ImageIO.read(getClass().getResource("image/right.png"));
-            jb_right.setIcon(new ImageIcon(img));
-            } catch (IOException ex) {
-        }
+        jb_right = new JButton("*");
+        jb_right.setIcon(new ImageIcon((new ImageIcon(
+            "image/right.png").getImage()
+            .getScaledInstance(buttonWidth1, buttonHeight, java.awt.Image.SCALE_SMOOTH))));
         //positon x, position y, size width, size height
-        jb_right.setBounds((screenWidth/2)/2+30,(screenHeight/scale)*6, (screenWidth/2)/2 -30,(screenHeight/scale)*2);
-        jb_right.setFont(new Font("SansSerif",Font.ITALIC ,28) ) ; 
+        jb_right.setBounds((screenWidth/2)/2 + 15,(screenHeight/scale)*12, (screenWidth/2)/2 - 15,(screenHeight/scale)*2);
+        jb_right.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        jb_right.setFocusable(false);
 
         jb_right.addMouseListener(new MouseAdapter()
         {
@@ -227,7 +311,166 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(jb_right);
 
+        // Change the Icon of the android
+
+        int iconLength = 0;
+        int iconHeight = (screenHeight/scale)*3 -10;
+        int iconWidth = (screenWidth/2)/4 -10;
+        
+        if(iconHeight < iconWidth){
+            iconLength = iconHeight;
+        } else{
+            iconLength = iconWidth;
+        }
+
+        icon_1 = new JButton("");
+        icon_1.setIcon(new ImageIcon((new ImageIcon(
+            "image/normal.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+
+        //positon x, position y, size width, size height
+        icon_1.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 - 5,(screenHeight/scale)*3);
+        icon_1.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_1.setFocusable(false);
+
+        icon_1.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "A";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_1);
+
+        // Change the Icon of the android        
+        icon_2 = new JButton("");
+        icon_2.setIcon(new ImageIcon((new ImageIcon(
+            "image/blink.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_2.setBounds(1*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_2.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_2.setFocusable(false);
+
+        icon_2.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "B";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_2);
+
+        // Change the Icon of the android        
+        icon_3 = new JButton("");
+        icon_3.setIcon(new ImageIcon((new ImageIcon(
+            "image/angry.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_3.setBounds(2*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_3.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_3.setFocusable(false);
+
+        icon_3.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "C";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_3);
+
+                // Change the Icon of the android        
+        icon_4 = new JButton("");
+        icon_4.setIcon(new ImageIcon((new ImageIcon(
+            "image/blank.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_4.setBounds(3*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_4.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_4.setFocusable(false);
+
+        icon_4.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "D";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_4);
+
+        // Change the Icon of the android        
+        icon_5 = new JButton("");
+        icon_5.setIcon(new ImageIcon((new ImageIcon(
+            "image/cry.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_5.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 - 5,(screenHeight/scale)*3);
+        icon_5.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_5.setFocusable(false);
+
+        icon_5.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "E";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_5);
+
+        // Change the Icon of the android        
+        icon_6 = new JButton("");
+        icon_6.setIcon(new ImageIcon((new ImageIcon(
+            "image/shy.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_6.setBounds(1*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_6.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_6.setFocusable(false);
+
+        icon_6.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "F";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_6);
+
+        // Change the Icon of the android        
+        icon_7 = new JButton("");
+        icon_7.setIcon(new ImageIcon((new ImageIcon(
+            "image/sleep.png").getImage()
+            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        
+        //positon x, position y, size width, size height
+        icon_7.setBounds(2*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_7.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_7.setFocusable(false);
+
+        icon_7.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "G";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_7);
+
         add(c_panel);
+        setFocusable(true);
     }
 
 }
@@ -265,12 +508,18 @@ class ImagePanel extends JPanel {
     public void paintComponent(Graphics g){  
         super.paintComponent(g);    
         if (image == null) return;
-        
+
         Graphics2D g2 = (Graphics2D) g;
-        //g2.rotate(270);
-        g2.rotate(Math.toRadians(270),640,480);
-        g2.drawImage( image,640 - (ImageServer.frame.screenHeight)/4 /*UP*/, 0/*RIGHT*/, null);
-        System.out.println(ImageServer.frame.screenHeight + "  " + ImageServer.frame.screenWidth);
-        //g2.drawImage(image, ImageServer.frame.screenHeight-640, ImageServer.frame.screenWidth/2-480, null);
+
+        //g2.rotate(Math.toRadians(270), ImageServer.frame.imageHeight, ImageServer.frame.imageWidth);  //640 480
+        g2.drawImage( image, 0/*UP*/, ImageServer.frame.image_position/*RIGHT*/, ImageServer.frame.imageWidth, ImageServer.frame.imageHeight, null);
+        //g2.drawImage( image, 1280-800/*UP*/, 533-800/*RIGHT*/, null);
+
+
+        //g2.rotate(Math.toRadians(270), ImageServer.frame.image_height_position, ImageServer.frame.image_width_position);  //640 480
+        //g2.drawImage( image, 0/*UP*/, 0/*RIGHT*/, null);
+        //System.out.println("screen : " + ImageServer.frame.screenHeight + "  " + ImageServer.frame.screenWidth);
+        //System.out.println("image : " + ImageServer.frame.imageHeight + "  " + ImageServer.frame.imageWidth);
+
     }
 }
