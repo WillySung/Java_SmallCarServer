@@ -47,9 +47,11 @@ class ChatThread extends Thread{
                 out.write(ImageServer.frame.send_message.getBytes());
                 out.flush();
                 command_counter ++;
-                System.out.println("sending" + command_counter);
+                System.out.println("sending" + command_counter);     
                 ImageServer.frame.send_flag = 0;
                 
+		/*----------------- clicked direction buttons turn into yellow ---------------------*/
+		
                 if (ImageServer.frame.clicked_bt == 1) {
                     //img = ImageIO.read(getClass().getResource("image/up_clicked.png"));
                     ImageServer.frame.jb_up.setIcon(new ImageIcon((new ImageIcon(
@@ -74,7 +76,9 @@ class ChatThread extends Thread{
                 else{
 
                 }
-
+        /*----------------- clicked direction buttons turn into yellow ---------------------*/
+		
+		/*------------------ one second later, the yellow button turns back to red -----------------------*/
                 try {
                     Thread.sleep(1000);
                     ImageServer.frame.jb_up.setIcon(new ImageIcon((new ImageIcon(
@@ -93,7 +97,9 @@ class ChatThread extends Thread{
                     ImageServer.frame.clicked_bt = 0;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }			
+		/*------------------ one second later, the yellow button turns back to red -----------------------*/
+		
             }
         }
     }catch(IOException e){

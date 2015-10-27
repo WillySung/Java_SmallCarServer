@@ -95,7 +95,7 @@ class ControlFrame extends JFrame{
     public JLabel label2 = new JLabel();
     public static int send_flag = 0;
     public static int back_to_center = 0;
-    public static String send_message = "";
+    public static String send_message = " ";
     public int bg_x = 153;
     int str_count = 0;
     int shift = -200;
@@ -175,6 +175,9 @@ class ControlFrame extends JFrame{
         // Create an image to load image to set button icon
         Image img;
 
+		
+/*------------------------------ direction button on keyboard in Morse code -----------------------------------*/
+
         // Add a JText to receive the input command
         final JTextField cmd_input = new JTextField("", 50);
         String old_string = "";
@@ -226,8 +229,12 @@ class ControlFrame extends JFrame{
             public void keyTyped(KeyEvent e) { 
                 //System.out.println("keytyped"); 
             }
-        });
-        
+        });	
+/*------------------------------ direction button on keyboard in Morse code -----------------------------------*/
+
+
+/*--------------------------- direction button on PC -------------------------------*/
+
         jb_up = new JButton("* *");
         jb_up.setIcon(new ImageIcon((new ImageIcon(
             "image/up.png").getImage()
@@ -242,7 +249,7 @@ class ControlFrame extends JFrame{
         jb_up.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent evt){
-            	System.out.println(" clicked ");
+            	System.out.println(" clicked up");
                 send_message = "1";
                 clicked_bt = 1;
                 send_flag = 1;
@@ -263,7 +270,7 @@ class ControlFrame extends JFrame{
         jb_down.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent evt){
-                System.out.println(" clicked ");
+                System.out.println(" clicked down");
                 send_message = "2";
                 clicked_bt = 2;
                 send_flag = 1;
@@ -283,7 +290,7 @@ class ControlFrame extends JFrame{
         jb_left.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent evt){
-                System.out.println(" clicked ");
+                System.out.println(" clicked left");
                 send_message = "3";
                 clicked_bt = 3;
                 send_flag = 1;
@@ -303,7 +310,7 @@ class ControlFrame extends JFrame{
         jb_right.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent evt){
-                System.out.println(" clicked ");
+                System.out.println(" clicked right");
                 send_message = "4";
                 clicked_bt = 4;
                 send_flag = 1;
@@ -311,8 +318,12 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(jb_right);
 
-        // Change the Icon of the android
+/*--------------------------- direction button on PC -------------------------------*/
+		
+		
+/*------------------------------ Change the Icon face of the android ----------------------------*/
 
+       
         int iconLength = 0;
         int iconHeight = (screenHeight/scale)*3 -10;
         int iconWidth = (screenWidth/2)/4 -10;
@@ -323,7 +334,8 @@ class ControlFrame extends JFrame{
             iconLength = iconWidth;
         }
 
-        icon_1 = new JButton("");
+        //normal face
+		icon_1 = new JButton("");
         icon_1.setIcon(new ImageIcon((new ImageIcon(
             "image/normal.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
@@ -343,7 +355,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_1);
 
-        // Change the Icon of the android        
+        // blink face       
         icon_2 = new JButton("");
         icon_2.setIcon(new ImageIcon((new ImageIcon(
             "image/blink.png").getImage()
@@ -364,7 +376,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_2);
 
-        // Change the Icon of the android        
+        // angry face       
         icon_3 = new JButton("");
         icon_3.setIcon(new ImageIcon((new ImageIcon(
             "image/angry.png").getImage()
@@ -385,7 +397,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_3);
 
-                // Change the Icon of the android        
+        // blank face      
         icon_4 = new JButton("");
         icon_4.setIcon(new ImageIcon((new ImageIcon(
             "image/blank.png").getImage()
@@ -406,7 +418,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_4);
 
-        // Change the Icon of the android        
+        // cry face       
         icon_5 = new JButton("");
         icon_5.setIcon(new ImageIcon((new ImageIcon(
             "image/cry.png").getImage()
@@ -427,7 +439,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_5);
 
-        // Change the Icon of the android        
+        // shy face      
         icon_6 = new JButton("");
         icon_6.setIcon(new ImageIcon((new ImageIcon(
             "image/shy.png").getImage()
@@ -448,7 +460,7 @@ class ControlFrame extends JFrame{
         });
         c_panel.add(icon_6);
 
-        // Change the Icon of the android        
+        // sleep face     
         icon_7 = new JButton("");
         icon_7.setIcon(new ImageIcon((new ImageIcon(
             "image/sleep.png").getImage()
@@ -468,6 +480,8 @@ class ControlFrame extends JFrame{
             }
         });
         c_panel.add(icon_7);
+		
+/*------------------------------ Change the Icon face of the android ----------------------------*/
 
         add(c_panel);
         setFocusable(true);
