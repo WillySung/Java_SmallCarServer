@@ -217,6 +217,48 @@ class ControlFrame extends JFrame{
                         clicked_bt = 2;
                         send_flag = 1;
                         break;
+					// normal
+					case 'a':
+                        System.out.println(" normal ");
+                        send_message = "A";
+                        send_flag = 1;
+                        break;
+					// blink
+					case 'n':
+                        System.out.println(" blink ");
+                        send_message = "B";
+                        send_flag = 1;
+                        break;
+					// angry
+					case 'd':
+                        System.out.println(" angry ");
+                        send_message = "C";
+                        send_flag = 1;
+                        break;
+					// blank
+					case 'r':
+                        System.out.println(" blank ");
+                        send_message = "D";
+                        send_flag = 1;
+                        break;
+					// cry
+					case 'u':
+                        System.out.println(" cry ");
+                        send_message = "E";
+                        send_flag = 1;
+                        break;
+					// shy
+					case 'k':
+                        System.out.println(" shy ");
+                        send_message = "F";
+                        send_flag = 1;
+                        break;
+					// sleep
+					case 's':
+                        System.out.println(" sleep ");
+                        send_message = "G";
+                        send_flag = 1;
+                        break;
                     default:
                         break;
                 }
@@ -335,13 +377,13 @@ class ControlFrame extends JFrame{
         }
 
         //normal face
-		icon_1 = new JButton("");
+		icon_1 = new JButton("*-");
         icon_1.setIcon(new ImageIcon((new ImageIcon(
             "image/normal.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
 
         //positon x, position y, size width, size height
-        icon_1.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 - 5,(screenHeight/scale)*3);
+        icon_1.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
         icon_1.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_1.setFocusable(false);
 
@@ -356,13 +398,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_1);
 
         // blink face       
-        icon_2 = new JButton("");
+        icon_2 = new JButton("-*");
         icon_2.setIcon(new ImageIcon((new ImageIcon(
             "image/blink.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_2.setBounds(1*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_2.setBounds(1*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_2.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_2.setFocusable(false);
 
@@ -377,13 +419,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_2);
 
         // angry face       
-        icon_3 = new JButton("");
+        icon_3 = new JButton("-**");
         icon_3.setIcon(new ImageIcon((new ImageIcon(
             "image/angry.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_3.setBounds(2*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_3.setBounds(2*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_3.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_3.setFocusable(false);
 
@@ -398,13 +440,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_3);
 
         // blank face      
-        icon_4 = new JButton("");
+        icon_4 = new JButton("*-*");
         icon_4.setIcon(new ImageIcon((new ImageIcon(
             "image/blank.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_4.setBounds(3*(screenWidth/2)/4 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_4.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_4.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_4.setFocusable(false);
 
@@ -419,13 +461,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_4);
 
         // cry face       
-        icon_5 = new JButton("");
+        icon_5 = new JButton("**-");
         icon_5.setIcon(new ImageIcon((new ImageIcon(
             "image/cry.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_5.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 - 5,(screenHeight/scale)*3);
+        icon_5.setBounds(1*(screenWidth/2)/3 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
         icon_5.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_5.setFocusable(false);
 
@@ -440,13 +482,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_5);
 
         // shy face      
-        icon_6 = new JButton("");
+        icon_6 = new JButton("-*-");
         icon_6.setIcon(new ImageIcon((new ImageIcon(
             "image/shy.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_6.setBounds(1*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_6.setBounds(2*(screenWidth/2)/3 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_6.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_6.setFocusable(false);
 
@@ -461,13 +503,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_6);
 
         // sleep face     
-        icon_7 = new JButton("");
+        icon_7 = new JButton("***");
         icon_7.setIcon(new ImageIcon((new ImageIcon(
             "image/sleep.png").getImage()
             .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_7.setBounds(2*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/4 -5,(screenHeight/scale)*3);
+        icon_7.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*7, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_7.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_7.setFocusable(false);
 
