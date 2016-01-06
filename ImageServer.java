@@ -82,7 +82,7 @@ class ControlFrame extends JFrame{
     public static int clicked_bt = 0;
 
     // these button are used to change the icon of the android
-    public JButton icon_1, icon_2, icon_3, icon_4, icon_5, icon_6, icon_7;
+    public JButton icon_1, icon_2, icon_3, icon_4, icon_5, icon_6, icon_7, icon_8;
 
     //these are the buttons for message
     public JButton jb_1;
@@ -219,46 +219,51 @@ class ControlFrame extends JFrame{
                         break;
 					// normal
 					case 'a':
-                        System.out.println(" normal ");
+                        System.out.println(" piss ");
                         send_message = "A";
                         send_flag = 1;
                         break;
 					// blink
 					case 'n':
-                        System.out.println(" blink ");
+                        System.out.println(" TV ");
                         send_message = "B";
                         send_flag = 1;
                         break;
 					// angry
 					case 'd':
-                        System.out.println(" angry ");
+                        System.out.println(" Hi~ ");
                         send_message = "C";
                         send_flag = 1;
                         break;
 					// blank
 					case 'r':
-                        System.out.println(" blank ");
+                        System.out.println(" rest ");
                         send_message = "D";
                         send_flag = 1;
                         break;
 					// cry
 					case 'u':
-                        System.out.println(" cry ");
+                        System.out.println(" happy ");
                         send_message = "E";
                         send_flag = 1;
                         break;
 					// shy
 					case 'k':
-                        System.out.println(" shy ");
+                        System.out.println(" angry ");
                         send_message = "F";
                         send_flag = 1;
                         break;
 					// sleep
 					case 's':
-                        System.out.println(" sleep ");
+                        System.out.println(" help ");
                         send_message = "G";
                         send_flag = 1;
                         break;
+					case 'w':
+                        System.out.println(" sad ");
+                        send_message = "H";
+                        send_flag = 1;
+                        break;	
                     default:
                         break;
                 }
@@ -377,10 +382,10 @@ class ControlFrame extends JFrame{
         }
 
         //normal face
-		icon_1 = new JButton("*-");
-        icon_1.setIcon(new ImageIcon((new ImageIcon(
-            "image/normal.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+		icon_1 = new JButton("尿尿*-");
+        //icon_1.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/normal.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
 
         //positon x, position y, size width, size height
         icon_1.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
@@ -398,13 +403,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_1);
 
         // blink face       
-        icon_2 = new JButton("-*");
-        icon_2.setIcon(new ImageIcon((new ImageIcon(
-            "image/blink.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_2 = new JButton("電視-*");
+        //icon_2.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/blink.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_2.setBounds(1*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
+        icon_2.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_2.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_2.setFocusable(false);
 
@@ -419,13 +424,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_2);
 
         // angry face       
-        icon_3 = new JButton("-**");
-        icon_3.setIcon(new ImageIcon((new ImageIcon(
-            "image/angry.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_3 = new JButton("嗨-**");
+        //icon_3.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/angry.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_3.setBounds(2*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
+        icon_3.setBounds(2*(screenWidth/2)/3 + 10,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_3.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_3.setFocusable(false);
 
@@ -440,10 +445,10 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_3);
 
         // blank face      
-        icon_4 = new JButton("*-*");
-        icon_4.setIcon(new ImageIcon((new ImageIcon(
-            "image/blank.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_4 = new JButton("休息*-*");
+        //icon_4.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/blank.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_4.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
@@ -461,13 +466,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_4);
 
         // cry face       
-        icon_5 = new JButton("**-");
-        icon_5.setIcon(new ImageIcon((new ImageIcon(
-            "image/cry.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_5 = new JButton("開心**-");
+        //icon_5.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/cry.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_5.setBounds(1*(screenWidth/2)/3 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
+        icon_5.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
         icon_5.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_5.setFocusable(false);
 
@@ -482,13 +487,13 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_5);
 
         // shy face      
-        icon_6 = new JButton("-*-");
-        icon_6.setIcon(new ImageIcon((new ImageIcon(
-            "image/shy.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_6 = new JButton("生氣-*-");
+        //icon_6.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/shy.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
-        icon_6.setBounds(2*(screenWidth/2)/3 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
+        icon_6.setBounds(2*(screenWidth/2)/3 + 10,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
         icon_6.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
         icon_6.setFocusable(false);
 
@@ -503,10 +508,10 @@ class ControlFrame extends JFrame{
         c_panel.add(icon_6);
 
         // sleep face     
-        icon_7 = new JButton("***");
-        icon_7.setIcon(new ImageIcon((new ImageIcon(
-            "image/sleep.png").getImage()
-            .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
+        icon_7 = new JButton("幫忙***");
+        //icon_7.setIcon(new ImageIcon((new ImageIcon(
+        //    "image/sleep.png").getImage()
+        //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_7.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*7, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
@@ -522,6 +527,23 @@ class ControlFrame extends JFrame{
             }
         });
         c_panel.add(icon_7);
+		
+		
+		icon_8 = new JButton("難過*--");
+        //positon x, position y, size width, size height
+        icon_8.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*7, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
+        icon_8.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_8.setFocusable(false);
+
+        icon_8.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent evt){
+                System.out.println(" clicked ");
+                send_message = "H";
+                send_flag = 1;
+            }
+        });
+        c_panel.add(icon_8);
 		
 /*------------------------------ Change the Icon face of the android ----------------------------*/
 
