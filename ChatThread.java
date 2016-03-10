@@ -73,6 +73,31 @@ class ChatThread extends Thread{
                         "image/right_clicked.png").getImage()
                         .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
                 }
+				else if (ImageServer.frame.clicked_bt == 5) {
+                    ImageServer.frame.icon_1.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 6) {
+                    ImageServer.frame.icon_2.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 7) {
+                    ImageServer.frame.icon_3.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 8) {
+                    ImageServer.frame.icon_4.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 9) {
+                    ImageServer.frame.icon_5.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 10) {
+                    ImageServer.frame.icon_6.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 11) {
+                    ImageServer.frame.icon_7.setBackground(Color.YELLOW);
+                }
+				else if (ImageServer.frame.clicked_bt == 12) {
+                    ImageServer.frame.icon_8.setBackground(Color.YELLOW);
+                }
+				
                 else{
 
                 }
@@ -93,7 +118,14 @@ class ChatThread extends Thread{
                     ImageServer.frame.jb_right.setIcon(new ImageIcon((new ImageIcon(
                         "image/right.png").getImage()
                         .getScaledInstance(ImageServer.frame.buttonWidth1, ImageServer.frame.buttonHeight, java.awt.Image.SCALE_SMOOTH))));
-                    
+                    ImageServer.frame.icon_1.setBackground(Color.WHITE);
+					ImageServer.frame.icon_2.setBackground(Color.WHITE);
+					ImageServer.frame.icon_3.setBackground(Color.WHITE);
+					ImageServer.frame.icon_4.setBackground(Color.WHITE);
+					ImageServer.frame.icon_5.setBackground(Color.WHITE);
+					ImageServer.frame.icon_6.setBackground(Color.WHITE);
+					ImageServer.frame.icon_7.setBackground(Color.WHITE);
+					ImageServer.frame.icon_8.setBackground(Color.WHITE);
                     ImageServer.frame.clicked_bt = 0;
                 } catch (InterruptedException e) {
                     e.printStackTrace();

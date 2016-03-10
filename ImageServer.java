@@ -221,47 +221,56 @@ class ControlFrame extends JFrame{
 					case 'a':
                         System.out.println(" piss ");
                         send_message = "A";
+						clicked_bt = 5;
                         send_flag = 1;
                         break;
 					// blink
 					case 'n':
                         System.out.println(" TV ");
                         send_message = "B";
+						clicked_bt = 6;
                         send_flag = 1;
                         break;
 					// angry
 					case 'd':
                         System.out.println(" Hi~ ");
                         send_message = "C";
+						clicked_bt = 7;
                         send_flag = 1;
                         break;
 					// blank
 					case 'r':
                         System.out.println(" rest ");
                         send_message = "D";
+						clicked_bt = 8;
                         send_flag = 1;
                         break;
 					// cry
 					case 'u':
                         System.out.println(" happy ");
                         send_message = "E";
+						clicked_bt = 9;
                         send_flag = 1;
                         break;
 					// shy
 					case 'k':
                         System.out.println(" angry ");
                         send_message = "F";
+						clicked_bt = 10;
                         send_flag = 1;
                         break;
 					// sleep
 					case 's':
                         System.out.println(" help ");
                         send_message = "G";
+						clicked_bt = 11;
+						clicked_bt = 5;
                         send_flag = 1;
                         break;
 					case 'w':
                         System.out.println(" sad ");
                         send_message = "H";
+						clicked_bt = 12;
                         send_flag = 1;
                         break;	
                     default:
@@ -382,14 +391,15 @@ class ControlFrame extends JFrame{
         }
 
         //normal face
-		icon_1 = new JButton("尿尿*-");
+		icon_1 = new JButton("<html>尿尿<br>*-</html>");      //use html to shift line
         //icon_1.setIcon(new ImageIcon((new ImageIcon(
         //    "image/normal.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
 
         //positon x, position y, size width, size height
         icon_1.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
-        icon_1.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_1.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;   
+		icon_1.setBackground(Color.WHITE);                   
         icon_1.setFocusable(false);
 
         icon_1.addMouseListener(new MouseAdapter()
@@ -397,20 +407,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "A";
+				clicked_bt = 5;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_1);
 
         // blink face       
-        icon_2 = new JButton("電視-*");
+        icon_2 = new JButton("<html>電視<br>-*</html>");
         //icon_2.setIcon(new ImageIcon((new ImageIcon(
         //    "image/blink.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_2.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
-        icon_2.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_2.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_2.setBackground(Color.WHITE);
         icon_2.setFocusable(false);
 
         icon_2.addMouseListener(new MouseAdapter()
@@ -418,20 +430,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "B";
+				clicked_bt = 6;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_2);
 
         // angry face       
-        icon_3 = new JButton("嗨-**");
+        icon_3 = new JButton("<html>嗨<br>-**</html>");
         //icon_3.setIcon(new ImageIcon((new ImageIcon(
         //    "image/angry.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_3.setBounds(2*(screenWidth/2)/3 + 10,(screenHeight/scale)*1, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
-        icon_3.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_3.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_3.setBackground(Color.WHITE);
         icon_3.setFocusable(false);
 
         icon_3.addMouseListener(new MouseAdapter()
@@ -439,20 +453,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "C";
+				clicked_bt = 7;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_3);
 
         // blank face      
-        icon_4 = new JButton("休息*-*");
+        icon_4 = new JButton("<html>休息<br>*-*</html>");
         //icon_4.setIcon(new ImageIcon((new ImageIcon(
         //    "image/blank.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_4.setBounds(0*(screenWidth/2)/4 + 30,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
-        icon_4.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_4.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_4.setBackground(Color.WHITE);
         icon_4.setFocusable(false);
 
         icon_4.addMouseListener(new MouseAdapter()
@@ -460,20 +476,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "D";
+				clicked_bt = 8;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_4);
 
         // cry face       
-        icon_5 = new JButton("開心**-");
+        icon_5 = new JButton("<html>開心<br>**-</html>");
         //icon_5.setIcon(new ImageIcon((new ImageIcon(
         //    "image/cry.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_5.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
-        icon_5.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_5.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_5.setBackground(Color.WHITE);
         icon_5.setFocusable(false);
 
         icon_5.addMouseListener(new MouseAdapter()
@@ -481,20 +499,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "E";
+				clicked_bt = 9;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_5);
 
         // shy face      
-        icon_6 = new JButton("生氣-*-");
+        icon_6 = new JButton("<html>生氣<br>-*-</html>");
         //icon_6.setIcon(new ImageIcon((new ImageIcon(
         //    "image/shy.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_6.setBounds(2*(screenWidth/2)/3 + 10,(screenHeight/scale)*4, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
-        icon_6.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_6.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_6.setBackground(Color.WHITE);
         icon_6.setFocusable(false);
 
         icon_6.addMouseListener(new MouseAdapter()
@@ -502,20 +522,22 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "F";
+				clicked_bt = 10;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_6);
 
         // sleep face     
-        icon_7 = new JButton("幫忙***");
+        icon_7 = new JButton("<html>幫忙<br>***</html>");
         //icon_7.setIcon(new ImageIcon((new ImageIcon(
         //    "image/sleep.png").getImage()
         //    .getScaledInstance(iconLength, iconLength, java.awt.Image.SCALE_SMOOTH))));
         
         //positon x, position y, size width, size height
         icon_7.setBounds(0*(screenWidth/2)/3 + 30,(screenHeight/scale)*7, ((screenWidth-30)/2)/3 -5,(screenHeight/scale)*3);
-        icon_7.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_7.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_7.setBackground(Color.WHITE);
         icon_7.setFocusable(false);
 
         icon_7.addMouseListener(new MouseAdapter()
@@ -523,16 +545,18 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "G";
+				clicked_bt = 11;
                 send_flag = 1;
             }
         });
         c_panel.add(icon_7);
 		
 		
-		icon_8 = new JButton("難過*--");
+		icon_8 = new JButton("<html>難過<br>*--</html>");
         //positon x, position y, size width, size height
         icon_8.setBounds(1*(screenWidth/2)/3 + 20,(screenHeight/scale)*7, ((screenWidth-30)/2)/3 - 5,(screenHeight/scale)*3);
-        icon_8.setFont(new Font("SansSerif",Font.ITALIC ,48) ) ;
+        icon_8.setFont(new Font("SansSerif",Font.BOLD ,48) ) ;
+		icon_8.setBackground(Color.WHITE);
         icon_8.setFocusable(false);
 
         icon_8.addMouseListener(new MouseAdapter()
@@ -540,6 +564,7 @@ class ControlFrame extends JFrame{
             public void mouseClicked(MouseEvent evt){
                 System.out.println(" clicked ");
                 send_message = "H";
+				clicked_bt = 12;
                 send_flag = 1;
             }
         });
