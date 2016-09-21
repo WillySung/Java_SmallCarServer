@@ -27,7 +27,7 @@ import java.awt.Dimension;
 public class ImageServer {
 	public static ServerSocket ss_image = null;
 	public static ServerSocket ss_chat = null;
-	public static Socket con = null;
+	public static Socket chat = null;
 	public static ControlFrame frame;
     public static void main(String args[]) throws IOException{
 		//create new sockets to accept connection
@@ -42,8 +42,8 @@ public class ImageServer {
         ImageThread imageThread = new ImageThread();
         imageThread.start();
         System.out.println(" created image thread");
-        con = ss_chat.accept();
-        System.out.println(con.getInetAddress());
+        chat = ss_chat.accept();
+        System.out.println(chat.getInetAddress().getHostAddress());
 		ChatThread chatThread = new ChatThread();
         chatThread.start();
         System.out.println(" created chat thread");
@@ -69,18 +69,12 @@ class ControlFrame extends JFrame{
     public JButton icon_1, icon_2, icon_3, icon_4, icon_5, icon_6, icon_7, icon_8;
     //these are the buttons for message
     public JButton jb_1;
-    //this is the textfield
-    public JTextField input_field;
-    public JTextField output_field;
+
     //for center
-    public JLabel label2 = new JLabel();
     public static int send_flag = 0;
-    public static int back_to_center = 0;
     public static String send_message = " ";
-    public int bg_x = 153;
-    int str_count = 0;
-    int shift = -200;
     int scale = 17;
+	
     // set the perference of the frame
     Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public int screenHeight = screenSize.height;
@@ -115,11 +109,11 @@ class ControlFrame extends JFrame{
         c_panel.setLayout(null);
         c_panel.setBackground( Color.WHITE );
         String ip = null;
-        String address = null; 
+        String HostName = null; 
         try{
             InetAddress addr = InetAddress.getLocalHost(); 
-            ip = addr.getHostAddress().toString();
-            address = addr.getHostName().toString();
+            ip = addr.getHostAddress().toString();         // the Internet ip address of the computer 
+            HostName = addr.getHostName().toString();      //the name of the computer
         }catch(IOException e){
         }
         //This button guide the user to input the correct ip of computer to the cell phone.
@@ -136,12 +130,8 @@ class ControlFrame extends JFrame{
             }
         });
         c_panel.add(jb_1);
-        // Create an image to load image to set button icon
-        Image img;
+        
 /*------------------------------ direction button on keyboard in Morse code -----------------------------------*/
-        // Add a JText to receive the input command
-        final JTextField cmd_input = new JTextField("", 50);
-        String old_string = "";
         addKeyListener(new KeyListener() {
             public void keyPressed(KeyEvent e) {
                 char input = e.getKeyChar();
@@ -244,7 +234,8 @@ class ControlFrame extends JFrame{
         });	
 /*------------------------------ direction button on keyboard in Morse code -----------------------------------*/
 /*--------------------------- direction button on PC -------------------------------*/
-        jb_up = new JButton("* *");
+		
+		jb_up = new JButton("* *");
         jb_up.setIcon(new ImageIcon((new ImageIcon(
             "image/up.png").getImage()
             .getScaledInstance(buttonWidth2, buttonHeight, java.awt.Image.SCALE_SMOOTH))));
@@ -501,7 +492,7 @@ class ImagePanel extends JPanel {
     static long last_time = 0;
     static double fps = 0;
     public void getimage() throws IOException{
-        Socket s = ImageServer.ss_image.accept();
+        Socket img = ImageServer.ss_image.accept();
         if(ImageCount % 30 == 0){
             current_time = System.currentTimeMillis();
             if((current_time - last_time) != 0){
@@ -510,7 +501,7 @@ class ImagePanel extends JPanel {
             System.out.println("Got image! fps : " + fps);
             last_time = current_time;
         }
-        this.input_stream = s.getInputStream();
+        this.input_stream = img.getInputStream();
         this.image = ImageIO.read(input_stream);
         this.input_stream.close();
         ImageCount++;

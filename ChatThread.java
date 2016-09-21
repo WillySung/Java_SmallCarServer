@@ -36,16 +36,15 @@ class ChatThread extends Thread{
     public void run(){
 
     try{
-        OutputStream out = ImageServer.con.getOutputStream();
-        Image img;
+        OutputStream output_stream = ImageServer.chat.getOutputStream();
         while(true){
             try{
                 Thread.sleep(10);
             } catch(InterruptedException ex){}
 
             if (ImageServer.frame.send_flag == 1) {
-                out.write(ImageServer.frame.send_message.getBytes());
-                out.flush();
+                output_stream.write(ImageServer.frame.send_message.getBytes());
+                output_stream.flush();
                 command_counter ++;
                 System.out.println("sending" + command_counter);     
                 ImageServer.frame.send_flag = 0;
